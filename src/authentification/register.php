@@ -1,6 +1,12 @@
 <?php
+    include ("../utils/connect.php");
+    include("insertUser.php");
     if(isset($_POST["register"])){
-        echo("hey");
+        $uname = $_POST["user"];
+        $pass = $_POST["password"];
+        $email = $_POST["email"];
+
+        insertion($pass, 'user', $uname, $email, $conn);
     }
 ?>
 
@@ -35,16 +41,6 @@
         Password
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" name="password" placeholder="******************">
-    </div>
-
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-bold mb-2" for="type">
-        type
-      </label>
-      <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="select" name="select" >
-        <option value="utilisateur" selected>Utilisateur</option> 
-        <option value="annonceur" >Annonceur  </option> 
-      </select>
     </div>
 
     <div class="flex items-center justify-between">

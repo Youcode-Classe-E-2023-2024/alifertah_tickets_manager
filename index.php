@@ -1,7 +1,8 @@
 <?php 
     include "src/utils/connect.php";
-    if(isset($_POST["login"]))
-        echo("yes");
+    if(isset($_POST["login"])){
+        
+    }
 ?>
 
 <!DOCTYPE html>
