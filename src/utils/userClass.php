@@ -4,7 +4,8 @@ class User{
         private $email;
         private $password;
         public $conn;
-    public function __construct($username, $password, $email, $conn){
+    
+    public function __construct($username, $password, $email , $conn){
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
@@ -21,6 +22,12 @@ class User{
 
     public function getPassword(){
          $this->password;
+    }
+
+    public function newLogin(){
+        $result = $this->conn->query("SELECT * FROM `user` where 
+            username = '$this->username' and password = '$this->password';");
+        $col = $result->fetch_assoc();
     }
 
     public function register(){

@@ -1,7 +1,12 @@
 <?php 
     include "src/utils/connect.php";
+    include "src/utils/userClass.php";
     if(isset($_POST["login"])){
-        
+      $uname = $_POST["user"];
+      $pwd = $_POST["password"];
+
+      $user = new User($uname, $pwd, "", $conn);
+      $user->newLogin();
     }
 ?>
 
