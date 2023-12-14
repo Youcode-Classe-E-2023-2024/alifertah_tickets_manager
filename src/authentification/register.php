@@ -1,11 +1,11 @@
 <?php
     include ("../utils/connect.php");
-    include ("../utils/user.php");
+    include ("../utils/userClass.php");
     if(isset($_POST["register"])){
         $uname = $_POST["user"];
         $pass = $_POST["password"];
         $email = $_POST["email"];
-        
+
         $user = new User($uname, $pass, $email, $conn);
         $user->register();
     }
