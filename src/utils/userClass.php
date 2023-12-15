@@ -26,11 +26,14 @@ class User{
     }
 
     public function newLogin(){
+        session_start();
+
         $result = $this->conn->query("SELECT * FROM `user` where 
             username = '$this->username' and password = '$this->password';");
         $col = $result->fetch_assoc();
         if($col){
-            echo("yes");
+            $_SESSION["id"] = $col["id"];
+            header("Location: src/tickets/dashboard.php");
         }
         else
             $this->error = "wrong password or username";

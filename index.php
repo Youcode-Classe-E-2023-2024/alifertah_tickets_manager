@@ -1,7 +1,10 @@
 <?php 
     include "src/utils/connect.php";
     include "src/utils/userClass.php";
-    
+    session_start();
+    if(isset($_SESSION["id"])){
+      header("Location: src/tickets/dashboard.php");
+  }
     if(isset($_POST["login"])){
       $uname = $_POST["user"];
       $pwd = $_POST["password"];

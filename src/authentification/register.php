@@ -1,6 +1,9 @@
 <?php
     include ("../utils/connect.php");
     include ("../utils/userClass.php");
+    session_start();
+    if(isset($_SESSION["id"]))
+      header("Location: ../tickets/dashboard.php");
     if(isset($_POST["register"])){
         $uname = $_POST["user"];
         $pass = $_POST["password"];
