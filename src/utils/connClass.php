@@ -14,7 +14,6 @@
 
         }
 
-
         public function connect(){
             $this->conn = new mysqli($this->server, $this->user, $this->pass,
                 $this->db);

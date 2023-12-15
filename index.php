@@ -1,6 +1,7 @@
 <?php 
     include "src/utils/connect.php";
     include "src/utils/userClass.php";
+    
     if(isset($_POST["login"])){
       $uname = $_POST["user"];
       $pwd = $_POST["password"];
@@ -33,7 +34,7 @@
         Password
       </label>
       <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="password" name="password" placeholder="******************">
-      <?php if(isset($error)){echo "<p class='text-red-500 text-xs italic'> $error </p>";}  ?>
+      <?php if(isset($user->error)){echo "<p class='text-red-500 text-xs italic'> $user->error </p>";}  ?>
     </div>
     <div class="flex items-center justify-between">
       <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="login" value="login">

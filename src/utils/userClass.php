@@ -3,7 +3,8 @@ class User{
         private $username;
         private $email;
         private $password;
-        public $conn;
+        public $error;
+        private $conn;
     
     public function __construct($username, $password, $email , $conn){
         $this->username = $username;
@@ -28,6 +29,11 @@ class User{
         $result = $this->conn->query("SELECT * FROM `user` where 
             username = '$this->username' and password = '$this->password';");
         $col = $result->fetch_assoc();
+        if($col){
+            echo("yes");
+        }
+        else
+            $this->error = "wrong password or username";
     }
 
     public function register(){
