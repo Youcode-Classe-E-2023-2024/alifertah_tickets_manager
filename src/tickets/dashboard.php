@@ -47,5 +47,20 @@ if(isset($_POST["logout"])){
       </div>
     </nav>
   </div>
+
+
+  <div class="container mx-auto mt-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="bg-green-400 text-gray-700 p-4 rounded-md shadow-md">
+                <h2 class="text-xl font-semibold mb-4">Ticket #123</h2>
+                <p><strong>Status:</strong> Open</p>
+                <p><strong>Assignee:</strong> John Doe</p>
+                <p><strong>Priority:</strong> High</p>
+                <p><strong>Created by:</strong> Jane Smith</p>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>
