@@ -1,5 +1,15 @@
 <?php 
+    session_start();
+    include ("../utils/userClass.php");
+    $test = new User("", "", "", "");
+    if(!isset($_SESSION["id"])){
+        header("Location: ../../index.php");
+    }
 
+    if(isset($_POST["logout"])){
+        $test->logout();
+        header("Location: ../../index.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +32,9 @@
             <a class="w-full h-full flex md:items-center pl-6 md:pl-4 pr-4 py-1 hover:bg-gray-100" href="submitTicket.php">Submit a ticket </a>
           </li>
           <li>
-            <a class="w-full h-full font-bold text-red-600 flex md:items-center pl-6 md:pl-4 pr-4 py-1 hover:bg-gray-100" href="#">logout</a>
+          <form class="h-full" method="post">
+                <button class="w-full h-full font-bold text-red-600 flex md:items-center pl-6 md:pl-4 pr-4 py-1 hover:bg-gray-100" name="logout" type="submit">logout</a>
+            </form>
           </li>
         </ul>
         <div class="md:hidden flex items-center">

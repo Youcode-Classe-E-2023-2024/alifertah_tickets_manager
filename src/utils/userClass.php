@@ -52,5 +52,13 @@ class User{
             return 0;
         }
     }
+
+    public function logout(){
+        session_start();
+        $_SESSION = array();
+        session_destroy();
+        header("Location: ../../index.php");
+        exit();
+    }
 }
 ?>
