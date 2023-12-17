@@ -1,6 +1,8 @@
 <?php 
-    session_start();
     include ("../utils/userClass.php");
+    include ("../utils/ticketClass.php");
+    include("../utils/connect.php");
+    session_start();
     $test = new User("", "", "", "");
     if(!isset($_SESSION["id"])){
         header("Location: ../../index.php");
@@ -9,6 +11,15 @@
     if(isset($_POST["logout"])){
         $test->logout();
         header("Location: ../../index.php");
+    }
+
+    if(isset($_POST['submit'])){
+      $ttl = $_POST["title"];
+      $dsc = $_POST["description"];
+      $sts = $_POST["status"];
+      $prt = $_POST["priority"];
+      $tck = new Ticket($ttl, $dsc, $sts, $prt, $conn);
+      $tck->newTicket();
     }
 ?>
 
@@ -32,25 +43,18 @@
             <a class="w-full h-full flex md:items-center pl-6 md:pl-4 pr-4 py-1 hover:bg-gray-100" href="submitTicket.php">Submit a ticket </a>
           </li>
           <li>
-          <form class="h-full" method="post">
+            <form class="h-full" method="post">
                 <button class="w-full h-full font-bold text-red-600 flex md:items-center pl-6 md:pl-4 pr-4 py-1 hover:bg-gray-100" name="logout" type="submit">logout</a>
             </form>
           </li>
         </ul>
-        <div class="md:hidden flex items-center">
-          <button id="menu-button" class="p-1 rounded-full focus:outline-none">
-            <svg class="fill-current h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-              <path id="menu-icon" d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-            </svg>
-          </button>
-        </div>
       </div>
     </nav>
   </div>
 
   
 
-<form class="max-w-md mx-auto py-5">
+<form class="max-w-md mx-auto py-5" method="post">
   <div class="relative z-0 w-full mb-5 group">
       <input type="text" name="title" id="title" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
       <label for="title" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Title</label>
@@ -77,7 +81,7 @@
       </select>
   </div>
   
-  <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+  <button type="submit" name="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 </form>
 
 </body>

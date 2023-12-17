@@ -1,13 +1,13 @@
 -- Table des Utilisateurs
 CREATE TABLE user (
-    id INT PRIMARY KEY,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255),
     email VARCHAR(255) UNIQUE,
     password VARCHAR(255)
 );
 
 CREATE TABLE tickets (
-    ticket_id INT PRIMARY KEY AUTO_INCREMENT,
+    id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(100) NOT NULL,
     description TEXT,
     status VARCHAR(20) DEFAULT 'Open',
@@ -15,20 +15,20 @@ CREATE TABLE tickets (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 );
 
-
 -- Create TicketUser Table (Many-to-Many relationship)
 CREATE TABLE ticket_user (
     ticket_id INT,
     user_id INT,
     PRIMARY KEY (ticket_id, user_id),
-    FOREIGN KEY (ticket_id) REFERENCES tickets(ticket_id) ON DELETE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
+    FOREIGN KEY (ticket_id) REFERENCES tickets(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 -- Create Tag Table
 CREATE TABLE tags (
     tag_id INT PRIMARY KEY AUTO_INCREMENT,
-    tag_name VARCHAR(50) UNIQUE NOT NULL
+    tag_name VARCHAR(50) UNIQUE NOT NULL,
+    FOREIGN KEY (ticket_id) REFERENCES tickets(id)
 );
 
 -- Create TicketTag Table (Many-to-Many relationship)

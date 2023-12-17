@@ -27,7 +27,6 @@ class User{
 
     public function newLogin(){
         session_start();
-
         $result = $this->conn->query("SELECT * FROM `user` where 
             username = '$this->username' and password = '$this->password';");
         $col = $result->fetch_assoc();
