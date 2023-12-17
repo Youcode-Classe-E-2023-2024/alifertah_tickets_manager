@@ -18,7 +18,7 @@
       $dsc = $_POST["description"];
       $sts = $_POST["status"];
       $prt = $_POST["priority"];
-      $tck = new Ticket($ttl, $dsc, $sts, $prt, $conn);
+      $tck = new Ticket($ttl, $dsc, $sts, $prt, $conn, $_SESSION["id"]);
       $tck->newTicket();
     }
 ?>
