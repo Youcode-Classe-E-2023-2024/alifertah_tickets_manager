@@ -6,42 +6,47 @@ CREATE TABLE user (
     password VARCHAR(255)
 );
 
--- Table des Tickets
-CREATE TABLE Ticket (
-    ID INT PRIMARY KEY,
-    Titre VARCHAR(255),
-    Description TEXT,
-    Statut VARCHAR(50),
-    Priorite INT,
-    DateCreation TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CreateurID INT,
-    AttribueAID INT,
-    FOREIGN KEY (CreateurID) REFERENCES Utilisateur(ID),
-    FOREIGN KEY (AttribueAID) REFERENCES Utilisateur(ID)
+CREATE TABLE tickets (
+    ticket_id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(100) NOT NULL,
+    description TEXT,
+    status VARCHAR(20) DEFAULT 'Open',
+    priority VARCHAR(20) DEFAULT 'Low',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 );
 
--- Table des Tags
-CREATE TABLE Tag (
-    ID INT PRIMARY KEY,
-    Nom VARCHAR(50)
+
+-- Create TicketUser Table (Many-to-Many relationship)
+CREATE TABLE ticket_user (
+    ticket_id INT,
+    user_id INT,
+    PRIMARY KEY (ticket_id, user_id),
+    FOREIGN KEY (ticket_id) REFERENCES tickets(ticket_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );
 
--- Table de liaison Many-to-Many entre Ticket et Tag
-CREATE TABLE TicketTag (
-    TicketID INT,
-    TagID INT,
-    PRIMARY KEY (TicketID, TagID),
-    FOREIGN KEY (TicketID) REFERENCES Ticket(ID),
-    FOREIGN KEY (TagID) REFERENCES Tag(ID)
+-- Create Tag Table
+CREATE TABLE tags (
+    tag_id INT PRIMARY KEY AUTO_INCREMENT,
+    tag_name VARCHAR(50) UNIQUE NOT NULL
 );
 
--- Table des Commentaires
-CREATE TABLE Commentaire (
-    ID INT PRIMARY KEY,
-    AuteurID INT,
-    Contenu TEXT,
-    Date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    TicketID INT,
-    FOREIGN KEY (AuteurID) REFERENCES Utilisateur(ID),
-    FOREIGN KEY (TicketID) REFERENCES Ticket(ID)
+-- Create TicketTag Table (Many-to-Many relationship)
+CREATE TABLE ticket_tag (
+    ticket_id INT,
+    tag_id INT,
+    PRIMARY KEY (ticket_id, tag_id),
+    FOREIGN KEY (ticket_id) REFERENCES tickets(ticket_id) ON DELETE CASCADE,
+    FOREIGN KEY (tag_id) REFERENCES tags(tag_id) ON DELETE CASCADE
+);
+
+-- Create Comment Table
+CREATE TABLE comments (
+    comment_id INT PRIMARY KEY AUTO_INCREMENT,
+    ticket_id INT,
+    user_id INT,
+    comment_text TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ticket_id) REFERENCES tickets(ticket_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE
 );

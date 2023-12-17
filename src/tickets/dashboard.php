@@ -1,15 +1,15 @@
 <?php 
-session_start();
-include ("../utils/userClass.php");
-$test = new User("", "", "", "");
-if(!isset($_SESSION["id"])){
-    header("Location: ../../index.php");
-}
+    session_start();
+    include ("../utils/userClass.php");
+    $test = new User("", "", "", "");
+    if(!isset($_SESSION["id"])){
+        header("Location: ../../index.php");
+    }
 
-if(isset($_POST["logout"])){
-    $test->logout();
-    header("Location: ../../index.php");
-}
+    if(isset($_POST["logout"])){
+        $test->logout();
+        header("Location: ../../index.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -52,14 +52,13 @@ if(isset($_POST["logout"])){
   <div class="container mx-auto mt-8">
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="bg-green-400 text-gray-700 p-4 rounded-md shadow-md">
+            <div class="bg-green-400 text-gray-700 p-4 rounded-md shadow-md">
                 <h2 class="text-xl font-semibold mb-4">Ticket #123</h2>
                 <p><strong>Status:</strong> Open</p>
                 <p><strong>Assignee:</strong> John Doe</p>
                 <p><strong>Priority:</strong> High</p>
                 <p><strong>Created by:</strong> Jane Smith</p>
             </div>
-
         </div>
     </div>
 </body>
