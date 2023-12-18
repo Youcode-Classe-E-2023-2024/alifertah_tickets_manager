@@ -29,4 +29,13 @@ class Ticket{
             return 0;
         }
     }
+
+    public function getAllDevs(){
+        $all = $this->conn->query("SELECT * FROM user");
+        while($r = $all->fetch_assoc()){
+            echo("
+            <option name='high'>$r[username]</option>
+            ");
+        }
+    }
 }
