@@ -14,13 +14,12 @@
         $test->logout();
         header("Location: ../../index.php");
     }
-
     if(isset($_POST['submit'])){
       $ttl = $_POST["title"];
       $dsc = $_POST["description"];
       $sts = $_POST["status"];
       $prt = $_POST["priority"];
-      $tck = new Ticket($ttl, $dsc, $sts, $prt, $conn, $_SESSION["id"]);
+      $tck = new Ticket($ttl, $dsc, $sts, $prt, $conn, $_SESSION["username"]);
       $tck->newTicket();
     }
 ?>
@@ -88,7 +87,7 @@
 
   <div class="relative z-0 w-full mb-5 group flex flex-col">
     <label for="priority" class="text-gray-400">Assignees</label>
-      <select name="priority" id="priority">
+      <select name="priority" id="assignees">
         <option value="" disabled selected hidden>---select assignee---</option>
         <?php $e->getAllDevs(); ?>
       </select>
@@ -102,12 +101,8 @@
         <option name="low" value="done">low</option>
       </select>
   </div>
-
-
-  
   <button type="submit" name="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 </form>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tagsinput@1.3.6/bootstrap-tagsinput.min.js"></script>
+<script src="../js/script.js"></script>
 </body>
 </html>

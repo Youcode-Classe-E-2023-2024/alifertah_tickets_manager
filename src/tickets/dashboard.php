@@ -1,7 +1,10 @@
 <?php 
     session_start();
     include ("../utils/userClass.php");
+    include ("../utils/ticketClass.php");
+    include("../utils/connect.php");
     $test = new User("", "", "", "");
+    $tck = new Ticket("", "", "", "", $conn, "");
     if(!isset($_SESSION["id"])){
         header("Location: ../../index.php");
     }
@@ -49,17 +52,15 @@
   </div>
 
 
-  <div class="container mx-auto mt-8">
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-green-400 text-gray-700 p-4 rounded-md shadow-md">
-                <h2 class="text-xl font-semibold mb-4">Ticket #123</h2>
-                <p><strong>Status:</strong> Open</p>
-                <p><strong>Assignee:</strong> John Doe</p>
-                <p><strong>Priority:</strong> High</p>
-                <p><strong>Created by:</strong> Jane Smith</p>
-            </div>
-        </div>
+  <div class="container mx-auto mt-8 w-[90%]">
+    <div class="bg-gray-400 text-gray-700 p-4 rounded-md shadow-md flex justify-around items-center">
+        <p><strong>Ticket</strong></p>
+        <p><strong>Status</strong></p>
+        <p><strong>Assignee(s)</strong></p>
+        <p><strong>Priority</strong></p>
+        <p><strong>Creator</strong></p>
     </div>
+    <?php $tck->getAllTickets()?>
+  </div>
 </body>
 </html>

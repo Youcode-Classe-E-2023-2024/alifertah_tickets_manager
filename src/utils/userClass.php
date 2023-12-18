@@ -32,6 +32,7 @@ class User{
         $col = $result->fetch_assoc();
         if($col){
             $_SESSION["id"] = $col["id"];
+            $_SESSION["username"] = $col["username"];
             header("Location: src/tickets/dashboard.php");
         }
         else
