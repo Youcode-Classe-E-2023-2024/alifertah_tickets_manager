@@ -109,18 +109,6 @@
 
 <script src="../js/script.js"></script>
 <script>
-
-
-
-let assigneeSelect = document.getElementById("assignees");
-
-assigneeSelect.addEventListener("change", function () {
-    console.log("test");
-    let selectedOption = this.options[this.selectedIndex];
-    selectedOption.style.display = "none";
-});
-
-
   // function submitForm() {
   //   console.log("hhh");
   //  fetch("process.php", {
