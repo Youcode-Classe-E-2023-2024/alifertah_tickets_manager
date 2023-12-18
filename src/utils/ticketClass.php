@@ -17,6 +17,8 @@ class Ticket{
     }
 
     public function newTicket(){
+        // echo $this->priority;
+        // die();
         $query = "INSERT INTO tickets 
         (title, description, status, priority, creator) VALUES 
         ('$this->title', '$this->description','$this->status', '$this->priority', '$this->creator')";
@@ -45,6 +47,7 @@ class Ticket{
             <div class='bg-gray-400 text-gray-700 p-4 rounded-md shadow-md flex justify-around items-center'>
                 <p><strong>$r[title]</strong></p>
                 <p><strong>$r[status]</strong></p>
+                <p><strong>ASSIGNEES</strong></p>
                 <p><strong>$r[priority]</strong></p>
             </div>
             ");

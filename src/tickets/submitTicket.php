@@ -14,6 +14,7 @@
         $test->logout();
         header("Location: ../../index.php");
     }
+    
     if(isset($_POST['submit'])){
       $ttl = $_POST["title"];
       $dsc = $_POST["description"];
@@ -66,36 +67,37 @@
       <input type="text" name="description" id="description" class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " required />
       <label for="description	" class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">descirption</label>
   </div>
+
   <div class="relative z-0 w-full mb-5 group flex flex-col">
     <label for="status" class="text-gray-400">Status</label>
       <select name="status" id="status">
-        <option value="" disabled selected hidden>---select status---</option>
-        <option name="open" value="open">open</option>
-        <option name="done" value="done">ongoing</option>
-        <option name="done" value="done">fixed</option>
+        <option value="" disabled selected>---select status---</option>
+        <option value="open">open</option>
+        <option value="ongoing">ongoing</option>
+        <option value="fixed">fixed</option>
       </select>
   </div>
 
   <div class="relative z-0 w-full mb-5 group flex flex-col">
     <label for="priority" class="text-gray-400">Priority</label>
       <select name="priority" id="priority">
-        <option value="" disabled selected hidden>---select priority---</option>
-        <option name="high" value="open">high</option>
-        <option name="low" value="done">low</option>
+        <option disabled selected>---select priority---</option>
+        <option value="high">high</option>
+        <option value="low">low</option>
       </select>
   </div>
 
   <div class="relative z-0 w-full mb-5 group flex flex-col">
-    <label for="priority" class="text-gray-400">Assignees</label>
-      <select name="priority" id="assignees">
+    <label for="assignees" class="text-gray-400">Assignees</label>
+      <select name="assignees" id="assignees">
         <option value="" disabled selected hidden>---select assignee---</option>
         <?php $e->getAllDevs(); ?>
       </select>
   </div>
   
   <div class="relative z-0 w-full mb-5 group flex flex-col">
-    <label for="priority" class="text-gray-400">tags</label>
-      <select name="priority" id="priority">
+    <label for="tags" class="text-gray-400">tags</label>
+      <select name="tags" id="tags">
         <option value="" disabled selected hidden>---select tags---</option>
         <option name="high" value="open">high</option>
         <option name="low" value="done">low</option>
