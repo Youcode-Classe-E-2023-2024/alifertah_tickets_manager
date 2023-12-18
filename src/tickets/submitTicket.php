@@ -14,7 +14,7 @@
         $test->logout();
         header("Location: ../../index.php");
     }
-    
+
     if(isset($_POST['submit'])){
       $ttl = $_POST["title"];
       $dsc = $_POST["description"];
@@ -94,7 +94,8 @@
         <?php $e->getAllDevs(); ?>
       </select>
   </div>
-  
+
+
   <div class="relative z-0 w-full mb-5 group flex flex-col">
     <label for="tags" class="text-gray-400">tags</label>
       <select name="tags" id="tags">
@@ -103,8 +104,41 @@
         <option name="low" value="done">low</option>
       </select>
   </div>
-  <button type="submit" name="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+  <button type="submit" name="submit" id="submit" onclick="submitForm();" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
 </form>
+
 <script src="../js/script.js"></script>
+<script>
+
+
+
+let assigneeSelect = document.getElementById("assignees");
+
+assigneeSelect.addEventListener("change", function () {
+    console.log("test");
+    let selectedOption = this.options[this.selectedIndex];
+    selectedOption.style.display = "none";
+});
+
+
+  // function submitForm() {
+  //   console.log("hhh");
+  //  fetch("process.php", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type" : "application/json"
+  //   },
+  //   body: JSON.stringify({items: selectedItems})
+  //  })
+
+  //  .then(response => response.json())
+  //  .then(data =>{
+  //   console.log("Success", data);
+  //  })
+  //  .catch((error) => {
+  //       console.error('Error:', error);
+  //   });
+  // }
+</script>
 </body>
 </html>
