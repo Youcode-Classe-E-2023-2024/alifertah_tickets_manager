@@ -1,4 +1,5 @@
 <?php
+include ("../utils/connect.php");
 header('Content-Type: application/json');
 $server = "localhost";
 $username = "root";
@@ -9,4 +10,4 @@ $conn = "";
 $connection = new Connection($server, $username, $pass, $db);
 $conn = $connection->connect();
 
-$conn->query("INSERT INTO tags (tag_name) VALUES ('SS');");
+$conn->query("INSERT INTO tags (tag_name) VALUES ('SfsdaS');");

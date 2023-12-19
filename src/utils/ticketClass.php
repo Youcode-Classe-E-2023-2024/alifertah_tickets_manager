@@ -44,7 +44,7 @@ class Ticket{
         $all = $this->conn->query("SELECT * FROM tickets");
         while($r = $all->fetch_assoc()){
             echo("
-            <div class='bg-gray-400 text-gray-700 p-4 rounded-md shadow-md flex justify-around items-center'>
+            <div class='bg-gray-400 text-gray-700 mt-4 p-4 rounded-md shadow-md flex justify-around items-center'>
                 <p><strong>$r[title]</strong></p>
                 <p><strong>$r[status]</strong></p>
                 <p><strong>ASSIGNEES</strong></p>
