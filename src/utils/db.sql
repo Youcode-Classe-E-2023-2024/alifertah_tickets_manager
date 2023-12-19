@@ -15,23 +15,20 @@ CREATE TABLE tickets (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 );
 
--- Create TicketUser Table (Many-to-Many relationship)
 CREATE TABLE ticket_user (
     ticket_id INT,
     user_id INT,
     PRIMARY KEY (ticket_id, user_id),
-    FOREIGN KEY (ticket_id) REFERENCES tickets(id) ON DELETE CASCADE,
+    FOREIGN KEY (ticket_id) REFERENCES tickets(ticket_id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
--- Create Tag Table
 CREATE TABLE tags (
     tag_id INT PRIMARY KEY AUTO_INCREMENT,
     tag_name VARCHAR(50) UNIQUE NOT NULL,
     FOREIGN KEY (ticket_id) REFERENCES tickets(id)
 );
 
--- Create TicketTag Table (Many-to-Many relationship)
 CREATE TABLE ticket_tag (
     ticket_id INT,
     tag_id INT,
@@ -40,7 +37,6 @@ CREATE TABLE ticket_tag (
     FOREIGN KEY (tag_id) REFERENCES tags(tag_id) ON DELETE CASCADE
 );
 
--- Create Comment Table
 CREATE TABLE comments (
     comment_id INT PRIMARY KEY AUTO_INCREMENT,
     ticket_id INT,

@@ -24,7 +24,6 @@ class Ticket{
         ('$this->title', '$this->description','$this->status', '$this->priority', '$this->creator')";
         
         if ($this->conn->query($query)) {
-            echo("<script>alert('yes')</script>");
             return 1;
         } else {
             echo "ERROR: " . $query . $this->conn->error;
@@ -53,4 +52,11 @@ class Ticket{
             ");
         }
     }
+
+    public function insertAssignees($selected){
+        foreach ($selected as $assignee) {
+            $this->conn->query("INSERT INTO ticket_user (userId, ticketId) VALUES (9, 91);");
+        }
+        echo json_encode(['success' => true, 'message' => 'Data processed successfully']);
+    } 
 }
