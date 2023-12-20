@@ -21,7 +21,7 @@
       $sts = $_POST["status"];
       $prt = $_POST["priority"];
       $tck = new Ticket($ttl, $dsc, $sts, $prt, $conn, $_SESSION["username"]);
-      $tck->newTicket();
+      $tck->newTicket($_SESSION["imad"]);
     }
 ?>
 

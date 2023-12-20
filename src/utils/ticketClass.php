@@ -1,4 +1,5 @@
 <?php
+
 class Ticket{
     private $title;
     private $description;
@@ -6,7 +7,9 @@ class Ticket{
     private $priority;
     private $creator;
     private $conn;
-    
+    public $ass;
+    static public $imad;
+
     public function __construct($title, $description, $status, $priority, $conn, $creator){
         $this->title = $title;
         $this->description = $description;
@@ -16,14 +19,14 @@ class Ticket{
         $this->creator = $creator;
     }
 
-    public function newTicket(){
-        // echo $this->priority;
-        // die();
+    public function newTicket($items){
+     
         $query = "INSERT INTO tickets 
         (title, description, status, priority, creator) VALUES 
         ('$this->title', '$this->description','$this->status', '$this->priority', '$this->creator')";
         
         if ($this->conn->query($query)) {
+            $this->insertAssignees($items,mysqli_insert_id($this->conn));
             return 1;
 
         } else {
@@ -54,9 +57,15 @@ class Ticket{
         }
     }
 
-    public function insertAssignees($selected){
+    public function insertAssignees($selected,$id){
         foreach ($selected as $assignee) {
-            $this->conn->query("INSERT INTO ticket_user (user_id, ticket_id) VALUES (2, 4);");
+            $query = "SELECT id FROM user WHERE username = '$assignee'";
+            $t = $this->conn->query($query);
+            $r = mysqli_fetch_assoc($t);
+            echo 'hi';
+            var_dump($r);
+            
+            $this->conn->query("INSERT INTO ticket_user (user_id, ticket_id) VALUES ('$r[id]', '$id');");
         }
         echo json_encode(['success' => true, 'message' => 'Data processed successfully']);
     } 
