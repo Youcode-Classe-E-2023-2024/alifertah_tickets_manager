@@ -6,7 +6,7 @@ class Ticket{
     private $priority;
     private $creator;
     private $conn;
-
+    
     public function __construct($title, $description, $status, $priority, $conn, $creator){
         $this->title = $title;
         $this->description = $description;
@@ -25,6 +25,7 @@ class Ticket{
         
         if ($this->conn->query($query)) {
             return 1;
+
         } else {
             echo "ERROR: " . $query . $this->conn->error;
             return 0;
@@ -55,7 +56,7 @@ class Ticket{
 
     public function insertAssignees($selected){
         foreach ($selected as $assignee) {
-            $this->conn->query("INSERT INTO ticket_user (userId, ticketId) VALUES (9, 91);");
+            $this->conn->query("INSERT INTO ticket_user (user_id, ticket_id) VALUES (2, 4);");
         }
         echo json_encode(['success' => true, 'message' => 'Data processed successfully']);
     } 

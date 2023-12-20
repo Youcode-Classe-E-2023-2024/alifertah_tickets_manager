@@ -4,7 +4,7 @@
     $server = "localhost";
     $username = "root";
     $pass = "";
-    $db = "deskhelp";
+    $db = "ticketnmanager";
     $conn = "";
     $connection = new Connection($server, $username, $pass, $db);
     $conn = $connection->connect();
