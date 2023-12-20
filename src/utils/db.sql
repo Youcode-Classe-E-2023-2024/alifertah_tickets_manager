@@ -1,4 +1,3 @@
--- Table des Utilisateurs
 CREATE TABLE user (
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255),
@@ -25,6 +24,7 @@ CREATE TABLE ticket_user (
 
 CREATE TABLE tags (
     tag_id INT PRIMARY KEY AUTO_INCREMENT,
+    ticket_id INT,
     tag_name VARCHAR(50) UNIQUE NOT NULL,
     FOREIGN KEY (ticket_id) REFERENCES tickets(id)
 );

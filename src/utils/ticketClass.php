@@ -45,14 +45,22 @@ class Ticket{
     }
     public function getAllTickets(){
         $all = $this->conn->query("SELECT * FROM tickets");
-        while($r = $all->fetch_assoc()){
+        while ($row = $all->fetch_assoc()) {
+            $assignees = $this->getAssignees($row['id']);
+            $assigneesHtml = '';
+    
+            foreach ($assignees as $assignee) {
+                $assigneesHtml .= "<span>$assignee</span>";
+            }
+    
             echo("
-            <div class='bg-gray-400 text-gray-700 mt-4 p-4 rounded-md shadow-md flex justify-around items-center'>
-                <p><strong>$r[title]</strong></p>
-                <p><strong>$r[status]</strong></p>
-                <p><strong>ASSIGNEES</strong></p>
-                <p><strong>$r[priority]</strong></p>
-            </div>
+                <div class='bg-gray-400 text-gray-700 mt-4 p-4 rounded-md shadow-md flex justify-around items-center'>
+                    <p><strong>$row[title]</strong></p>
+                    <p><strong>$row[status]</strong></p>
+                    <p class='flex flex-col'>$assigneesHtml</p>
+                    <p><strong>$row[priority]</strong></p>
+                    <p><strong>$row[creator]</strong></p>
+                </div>
             ");
         }
     }
@@ -68,5 +76,16 @@ class Ticket{
             $this->conn->query("INSERT INTO ticket_user (user_id, ticket_id) VALUES ('$r[id]', '$id');");
         }
         echo json_encode(['success' => true, 'message' => 'Data processed successfully']);
-    } 
+    }
+
+    public function getAssignees($id){
+        $assignees = [];
+        $all = $this->conn->query("SELECT user.username FROM user
+        JOIN ticket_user ON user.id = ticket_user.user_id
+        WHERE ticket_user.ticket_id = $id");
+        while($r = $all->fetch_assoc()){
+            $assignees[] = $r["username"];
+        }
+        return $assignees;
+    }
 }
