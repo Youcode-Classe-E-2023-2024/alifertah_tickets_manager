@@ -47,6 +47,7 @@ class Ticket{
         $all = $this->conn->query("SELECT * FROM tickets");
         while ($row = $all->fetch_assoc()) {
             $assignees = $this->getAssignees($row['id']);
+            if (in_array($_SESSION["username"], $assignees)) {
             $assigneesHtml = '';
     
             foreach ($assignees as $assignee) {
@@ -62,6 +63,7 @@ class Ticket{
                     <p><strong>$row[creator]</strong></p>
                 </div>
             ");
+        }
         }
     }
 
